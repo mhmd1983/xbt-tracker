@@ -1,0 +1,22 @@
+version: "3"
+services:
+  xbtserver:
+    container_name: "xbt"
+    build: 
+      context: ./
+    image: xbt_tracker:latest
+    tty: true
+    environment:
+      - "PUID=1001"
+      - "PGID=1001"
+      - "TZ=Etc/UTC"
+    ports:
+      - "2710:2710"
+    volumes:
+      - "./xbt/xbt_tracker.conf:/xbt/Tracker/xbt_tracker.conf"    
+    networks:
+      - network1
+networks:
+  network1:
+    name: lamp_default
+    external: true    
